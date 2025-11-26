@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\Blazor CA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{051FC7BC-372E-4834-9EAF-7D9FC800A28D}|Blazor CA.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazor ca\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{051FC7BC-372E-4834-9EAF-7D9FC800A28D}|Blazor CA.csproj|solutionrelative:pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{051FC7BC-372E-4834-9EAF-7D9FC800A28D}|Blazor CA.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazor ca\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{051FC7BC-372E-4834-9EAF-7D9FC800A28D}|Blazor CA.csproj|solutionrelative:layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{051FC7BC-372E-4834-9EAF-7D9FC800A28D}|Blazor CA.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazor ca\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -23,14 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Counter.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\Blazor CA\\Pages\\Counter.razor",
-              "RelativeDocumentMoniker": "Pages\\Counter.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\Blazor CA\\Pages\\Counter.razor",
-              "RelativeToolTip": "Pages\\Counter.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\Blazor CA\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\Blazor CA\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T23:25:33.4Z",
+              "WhenOpened": "2025-11-26T23:50:07.583Z",
               "EditorCaption": ""
             },
             {
