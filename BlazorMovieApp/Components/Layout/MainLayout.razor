@@ -1,23 +1,29 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<div class="topnav">
+    <div class="nav-left">
+        <a class="brand" href="/">MovieAppr</a>
     </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+    <button class="nav-toggle" @onclick="ToggleMenu">
+        ☰
+    </button>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <div class="nav-links @(menuOpen ? "open" : "")">
+        <a href="/">Home</a>
+        <a href="/search">Search</a>
+    </div>
 </div>
 
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+<div class="main-content">
+    @Body
 </div>
+
+@code {
+    private bool menuOpen = false;
+
+    void ToggleMenu()
+    {
+        menuOpen = !menuOpen;
+    }
+}
