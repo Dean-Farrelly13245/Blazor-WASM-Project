@@ -13,14 +13,30 @@ else if (errorMessage != null)
 }
 else
 {
-    @foreach (var item in movies)
-    {
-        <div style="margin-bottom:20px">
-            <img src="@item.ImageUrl" width="120" style="border-radius:6px;" />
-            <div><strong>@item.Title</strong> (@item.Year)</div>
-            <div>Rank: @item.Rank</div>
-        </div>
-    }
+    <div style="display:flex; flex-wrap:wrap; gap:20px; margin-top:20px;">
+        @foreach (var item in movies)
+        {
+            <div style="
+                    width:150px;
+                    text-align:center;
+                    background:#f7f7f7;
+                    padding:10px;
+                    border-radius:8px;
+                    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+                ">
+                <img src="@item.ImageUrl"
+                     width="150"
+                     style="border-radius:6px; height:auto;" />
+
+                <div style="font-weight:bold; margin-top:8px;">
+                    @item.Title
+                </div>
+
+                <div style="color:#666;">@item.Year</div>
+                <div style="color:#444;">Rank: @item.Rank</div>
+            </div>
+        }
+    </div>
 }
 
 @code {
