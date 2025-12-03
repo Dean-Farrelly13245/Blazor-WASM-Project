@@ -1,7 +1,125 @@
 ﻿@page "/"
+@inject HttpClient Http
 
-<PageTitle>Home</PageTitle>
+<h3>Popular Movies</h3>
 
-<h1>Hello, world!</h1>
+@if (movies == null && errorMessage == null)
+{
+    <p><em>Loading movies...</em></p>
+}
+else if (errorMessage != null)
+{
+    <p style="color:red; white-space:pre-wrap">@errorMessage</p>
+}
+else
+{
+    @foreach (var item in movies)
+    {
+        <div style="margin-bottom:20px">
+            <img src="@item.ImageUrl" width="120" style="border-radius:6px;" />
+            <div><strong>@item.Title</strong> (@item.Year)</div>
+            <div>Rank: @item.Rank</div>
+        </div>
+    }
+}
 
-Welcome to your new app.
+@code {
+    private List<MovieItem>? movies;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadMoviesAsync();
+    }
+
+    private async Task LoadMoviesAsync()
+    {
+        try
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-most-popular?limit=20&topMeterTitlesType=ALL")
+            };
+
+            request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
+            request.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
+
+            var response = await Http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            var result = System.Text.Json.JsonSerializer.Deserialize<ApiResponse>(json);
+
+            movies = result?.data?.topMeterTitles?.edges?
+                .Select(e => new MovieItem
+                {
+                    Title = e.node.titleText.text,
+                    Year = e.node.releaseYear.year.ToString(),
+                    ImageUrl = e.node.primaryImage?.url,
+                    Rank = e.node.meterRanking.currentRank
+                })
+                .ToList();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+    }
+
+    public class ApiResponse
+    {
+        public ApiData data { get; set; }
+    }
+
+    public class ApiData
+    {
+        public TopTitles topMeterTitles { get; set; }
+    }
+
+    public class TopTitles
+    {
+        public List<Edge> edges { get; set; }
+    }
+
+    public class Edge
+    {
+        public MovieNode node { get; set; }
+    }
+
+    public class MovieNode
+    {
+        public TitleText titleText { get; set; }
+        public ReleaseYear releaseYear { get; set; }
+        public PrimaryImage primaryImage { get; set; }
+        public MeterRanking meterRanking { get; set; }
+    }
+
+    public class TitleText
+    {
+        public string text { get; set; }
+    }
+
+    public class ReleaseYear
+    {
+        public int year { get; set; }
+    }
+
+    public class PrimaryImage
+    {
+        public string url { get; set; }
+    }
+
+    public class MeterRanking
+    {
+        public int currentRank { get; set; }
+    }
+
+    public class MovieItem
+    {
+        public string Title { get; set; }
+        public string Year { get; set; }
+        public string ImageUrl { get; set; }
+        public int Rank { get; set; }
+    }
+}
