@@ -1,1 +1,0 @@
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\Blazor CA\wwwroot\sample-data\weather.json
