@@ -13,12 +13,12 @@ else
 {
     <h3>Popular Movies</h3>
 
-    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+    <div style="display:flex; flex-wrap:nowrap; overflow-x:auto; gap:20px; padding-bottom:10px;">
         @if (movieList != null)
         {
             foreach (var m in movieList)
             {
-                <div style="width:150px; text-align:center;">
+                <div style="flex:0 0 auto; width:150px; text-align:center;">
                     <img src="@m.ImageUrl" width="150" style="border-radius:6px;" />
                     <div><strong>@m.Title</strong></div>
                     <div>@m.Year</div>
@@ -27,14 +27,15 @@ else
             }
         }
     </div>
+
     <h3 style="margin-top:40px;">Popular TV Shows</h3>
 
-    <div style="display:flex; flex-wrap:wrap; gap:20px;">
+    <div style="display:flex; flex-wrap:nowrap; overflow-x:auto; gap:20px; padding-bottom:10px;">
         @if (tvList != null)
         {
             foreach (var m in tvList)
             {
-                <div style="width:150px; text-align:center;">
+                <div style="flex:0 0 auto; width:150px; text-align:center;">
                     <img src="@m.ImageUrl" width="150" style="border-radius:6px;" />
                     <div><strong>@m.Title</strong></div>
                     <div>@m.Year</div>
@@ -43,6 +44,7 @@ else
             }
         }
     </div>
+
 
 
 }
@@ -60,9 +62,19 @@ else
 
         if (movies != null)
         {
-            movieList = movies.Where(x => x.Type == "movie").ToList();
-            tvList = movies.Where(x => x.Type == "tvSeries").ToList();
+            movieList = movies
+                .Where(x => x.Type == "movie")
+                .OrderBy(x => x.Rank)
+                .Take(10)
+                .ToList();
+
+            tvList = movies
+                .Where(x => x.Type != "movie")
+                .OrderBy(x => x.Rank)
+                .Take(10)
+                .ToList();
         }
+
     }
 
     private async Task LoadMoviesAsync()
@@ -72,7 +84,7 @@ else
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-most-popular?limit=20&topMeterTitlesType=ALL")
+                RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-most-popular?limit=30&topMeterTitlesType=ALL")
             };
 
             request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
@@ -92,6 +104,7 @@ else
                     ImageUrl = e.node.primaryImage?.url,
                     Rank = e.node.meterRanking.currentRank,
                     Type = e.node.titleType?.id
+
 
                 })
                 .ToList();
