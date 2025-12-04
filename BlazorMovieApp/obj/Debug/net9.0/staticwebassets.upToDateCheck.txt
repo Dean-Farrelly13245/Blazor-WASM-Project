@@ -44,6 +44,7 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\app.css
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -88,4 +89,3 @@ C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bo
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\app.css

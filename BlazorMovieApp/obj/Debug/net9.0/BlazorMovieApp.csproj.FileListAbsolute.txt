@@ -77,4 +77,4 @@ C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\BlazorMovieApp.pdb
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\BlazorMovieApp.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\ref\BlazorMovieApp.dll
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\udmxr8cbxo-42wz7pq4ee.gz
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\udmxr8cbxo-cjm4snlzit.gz
