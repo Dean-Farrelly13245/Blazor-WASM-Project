@@ -21,7 +21,6 @@ C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\scopedcss\bundle\BlazorMovieApp.styles.css
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\scopedcss\projectbundle\BlazorMovieApp.bundle.scp.css
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\udmxr8cbxo-khy4lop6wu.gz
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\20klgt5ulm-bqjiyaj88i.gz
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\2kxmvu6qoq-c2jlpeoesf.gz
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\k2eu6zlwi9-erw9l3u2r3.gz
@@ -78,3 +77,4 @@ C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\BlazorMovieApp.pdb
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\BlazorMovieApp.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\ref\BlazorMovieApp.dll
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\udmxr8cbxo-42wz7pq4ee.gz
