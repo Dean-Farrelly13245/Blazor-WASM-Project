@@ -1,37 +1,46 @@
 ﻿@page "/search"
 @inject HttpClient Http
 
-<h2>Search</h2>
+<h3>Search Movies & TV Shows</h3>
 
-<input @bind="query"
-       @oninput="OnSearchChanged"
-       placeholder="Search for movies or shows..."
-       style="padding:8px; width:300px; border-radius:6px; border:1px solid #444;" />
+<div style="margin-bottom:15px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <input @bind="query" @bind:event="oninput" placeholder="Search..."
+           style="padding:8px; width:280px; border-radius:6px; border:1px solid #ccc;" />
+
+    <button @onclick="DoSearch"
+            style="padding:8px 20px; border-radius:6px; border:none; background:#6c63ff; color:white;">
+        Search
+    </button>
+</div>
 
 @if (loading)
 {
-    <p>Searching...</p>
+    <p><em>Searching...</em></p>
 }
 else if (!string.IsNullOrEmpty(error))
 {
     <p style="color:red">@error</p>
 }
-else if (results.Count == 0 && query.Length > 1)
+else if (searched && results.Count == 0)
 {
     <p>No results found.</p>
 }
-else
+else if (results.Count > 0)
 {
-    <div style="margin-top:20px; display:grid; gap:15px; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));">
+    <div style="color:#ccc; margin-bottom:12px;">Found @results.Count result(s)</div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:15px;">
         @foreach (var item in results)
         {
-            <div style="display:flex; gap:10px; background:#1f1f3a; padding:10px; border-radius:8px;">
+            <div style="display:flex; gap:12px; padding:12px; border-radius:8px; background:#1f1f3a;">
                 <img src="@item.ImageUrl"
-                     style="width:70px; height:105px; object-fit:cover; border-radius:6px;" />
+                     style="width:70px; height:105px; object-fit:cover; border-radius:6px;"
+                     onerror="this.src='https://via.placeholder.com/70x105?text=No+Image'" />
 
                 <div>
-                    <div style="font-weight:bold;">@item.Title</div>
-                    <div style="font-size:12px; color:#ccc;">@item.Year • @item.Type</div>
+                    <div style="font-weight:bold; font-size:15px;">@item.Title</div>
+                    <div style="color:#ccc; font-size:13px;">@item.Year</div>
+                    <div style="color:#aaa; font-size:12px;">@item.Type</div>
                 </div>
             </div>
         }
@@ -39,60 +48,51 @@ else
 }
 
 @code {
-    string query = "";
-    bool loading = false;
-    string error = "";
-    List<SearchItem> results = new();
+    private string query = "";
+    private bool loading;
+    private bool searched;
+    private string error = "";
+    private List<SearchItem> results = new();
 
-    async Task OnSearchChanged(ChangeEventArgs e)
+    private async Task DoSearch()
     {
-        query = e.Value?.ToString() ?? "";
-
-        if (query.Length < 2)
-        {
-            results.Clear();
+        if (string.IsNullOrWhiteSpace(query))
             return;
-        }
 
-        await RunSearch();
-    }
+        loading = true;
+        searched = true;
+        error = "";
+        results = new List<SearchItem>();
 
-    async Task RunSearch()
-    {
         try
         {
-            loading = true;
-            error = "";
-            results.Clear();
+            var url = $"https://imdb232.p.rapidapi.com/api/search?q={Uri.EscapeDataString(query)}&count=40";
 
-            var req = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://imdb232.p.rapidapi.com/api/search?query={query}")
-            };
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
+            request.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
 
-            req.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
-            req.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
+            var response = await Http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
 
-            var res = await Http.SendAsync(req);
-            res.EnsureSuccessStatusCode();
-
-            var json = await res.Content.ReadAsStringAsync();
-
-            var data = System.Text.Json.JsonSerializer.Deserialize<ApiResponse>(json,
+            var json = await response.Content.ReadAsStringAsync();
+            var api = System.Text.Json.JsonSerializer.Deserialize<SearchResponse>(json,
                 new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            results = data?.data?.searchResults?
-                .Where(x => x.titleText?.text != null)
-                .Select(x => new SearchItem
-                {
-                    Title = x.titleText.text,
-                    Year = x.releaseYear?.year?.ToString() ?? "N/A",
-                    Type = x.titleType?.id ?? "unknown",
-                    ImageUrl = x.primaryImage?.url ?? "https://via.placeholder.com/70x105?text=No+Image"
-                })
-                .ToList()
-                ?? new List<SearchItem>();
+            if (api?.data?.mainSearch?.edges != null)
+            {
+                results = api.data.mainSearch.edges
+                    .Select(e => e.node.entity)
+                    .Where(e => e != null && e.titleText != null)
+                    .Select(e => new SearchItem
+                    {
+                        Title = e.titleText.text,
+                        Year = e.releaseYear?.year?.ToString(),
+                        Type = e.titleType?.id,
+                        ImageUrl = e.primaryImage?.url
+                    })
+                    .ToList();
+            }
         }
         catch (Exception ex)
         {
@@ -102,28 +102,43 @@ else
         loading = false;
     }
 
-    public class ApiResponse
+    public class SearchResponse
     {
-        public ApiData data { get; set; }
+        public SearchData data { get; set; }
     }
 
-    public class ApiData
+    public class SearchData
     {
-        public List<SearchNode> searchResults { get; set; }
+        public MainSearch mainSearch { get; set; }
+    }
+
+    public class MainSearch
+    {
+        public List<SearchEdge> edges { get; set; }
+    }
+
+    public class SearchEdge
+    {
+        public SearchNode node { get; set; }
     }
 
     public class SearchNode
     {
+        public SearchEntity entity { get; set; }
+    }
+
+    public class SearchEntity
+    {
         public TitleText titleText { get; set; }
         public ReleaseYear releaseYear { get; set; }
-        public PrimaryImage primaryImage { get; set; }
         public TitleType titleType { get; set; }
+        public PrimaryImage primaryImage { get; set; }
     }
 
     public class TitleText { public string text { get; set; } }
     public class ReleaseYear { public int? year { get; set; } }
-    public class PrimaryImage { public string url { get; set; } }
     public class TitleType { public string id { get; set; } }
+    public class PrimaryImage { public string url { get; set; } }
 
     public class SearchItem
     {
