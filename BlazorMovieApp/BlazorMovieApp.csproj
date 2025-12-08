@@ -11,4 +11,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.9" PrivateAssets="all" />
   </ItemGroup>
 
+   <ItemGroup>
+	<Compile Remove="MovieApp.PlaywrightTests\**\*.cs" />
+	<None Remove="MovieApp.PlaywrightTests\**\*" />
+	<EmbeddedResource Remove="MovieApp.PlaywrightTests\**\*" />
+   </ItemGroup>
+
+    
+
 </Project>

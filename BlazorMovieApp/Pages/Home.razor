@@ -12,7 +12,7 @@ else if (!string.IsNullOrEmpty(errormessage))
 }
 else
 {
-    <h3>Popular Movies</h3>
+    <h3 id="popularMoviesHeader">Popular Movies</h3>
 
     <div style="display:flex; overflow-x:auto; gap:20px; padding-bottom:10px;">
         @foreach (var m in movieList)
@@ -46,17 +46,17 @@ else
 
         <div>
             <label>Sort</label><br />
-            <select value="@selectedSort"
+            <select id ="sortSelect" value="@selectedSort"
                     @onchange="@((ChangeEventArgs e) =>
                     { selectedSort = e.Value?.ToString() ?? "newest"; OnFilterChanged(); })">
-                                                                                       <option value="newest">Newest</option>
-                                                                                       <option value="rank">Highest Rank</option>
-                                                                                   </select>
-                                                                               </div>
+                    <option value="newest">Newest</option>
+                    <option value="rank">Highest Rank</option>
+             </select>
+        </div>
 
         <div>
             <label>Year</label><br />
-            <select value="@selectedYearRange"
+            <select id="yearSelect" value="@selectedYearRange"
                     @onchange="@((ChangeEventArgs e) =>
                     { selectedYearRange = e.Value?.ToString() ?? "all"; OnFilterChanged(); })">
                     <option value="all">All years</option>
@@ -69,7 +69,7 @@ else
         </div>
         <div>
             <label>Minimum rating</label><br />
-            <select value="@selectedMinRating"
+            <select id= "ratingSelect" value="@selectedMinRating"
                     @onchange="@((ChangeEventArgs e) =>
                     { selectedMinRating = e.Value?.ToString() ?? "all"; OnFilterChanged(); })">
                     <option value="all">All ratings</option>
@@ -82,7 +82,7 @@ else
         </div>
 
         <div>
-            <button @onclick="Search"
+            <button id="applyFiltersButton" @onclick="Search"
                     style="padding:6px 14px; border-radius:6px; border:none; background:#6c63ff; color:white;">
                 Apply filters
             </button>
@@ -220,7 +220,7 @@ else
     {
         var request = new HttpRequestMessage();
         request.Method = HttpMethod.Get;
-        request.RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-chart-rankings?rankingsChartType=TOP_250&limit=50");
+        request.RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-chart-rankings?rankingsChartType=TOP_250&limit=250");
         request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
         request.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
 
