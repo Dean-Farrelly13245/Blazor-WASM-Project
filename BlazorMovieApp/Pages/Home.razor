@@ -20,7 +20,7 @@ else
             <div style="flex:0 0 auto; width:150px; text-align:center;">
                 <img src="@m.ImageUrl" width="150" style="border-radius:6px;" />
                 <div><strong>@m.Title</strong></div>
-                <div>@m.Year</div>
+                <div>@(m.Year == 0 ? "Unknown" : m.Year.ToString())</div>
                 <div>Rank: @m.Rank</div>
             </div>
         }
@@ -34,53 +34,67 @@ else
             <div style="flex:0 0 auto; width:150px; text-align:center;">
                 <img src="@m.ImageUrl" width="150" style="border-radius:6px;" />
                 <div><strong>@m.Title</strong></div>
-                <div>@m.Year</div>
+                <div>@(m.Year == 0 ? "Unknown" : m.Year.ToString())</div>
                 <div>Rank: @m.Rank</div>
             </div>
         }
     </div>
 
-    <h3 style="margin-top:40px;">Browse Titles</h3>
+    <h3 style="margin-top:40px;">Top Movie Charts</h3>
 
-    <div style="display:flex; gap:20px; margin-bottom:15px; align-items:flex-end;">
-        <div>
-            <label>Type</label><br />
-            <select value="@selectedType" @onchange="@((ChangeEventArgs e) => { selectedType = e.Value?.ToString() ?? "all"; OnFilterChanged(); })">
-                <option value="all">All</option>
-                <option value="movie">Movies</option>
-                <option value="tv">TV Shows</option>
-            </select>
-        </div>
+    <div style="display:flex; flex-wrap:wrap; gap:20px; margin-bottom:15px; align-items:flex-end;">
 
         <div>
             <label>Sort</label><br />
-            <select value="@selectedSort" @onchange="@((ChangeEventArgs e) => { selectedSort = e.Value?.ToString() ?? "newest"; OnFilterChanged(); })">
-                <option value="newest">Newest</option>
-                <option value="rank">Highest Rank</option>
+            <select value="@selectedSort"
+                    @onchange="@((ChangeEventArgs e) =>
+                    { selectedSort = e.Value?.ToString() ?? "newest"; OnFilterChanged(); })">
+                                                                                       <option value="newest">Newest</option>
+                                                                                       <option value="rank">Highest Rank</option>
+                                                                                   </select>
+                                                                               </div>
+
+        <div>
+            <label>Year</label><br />
+            <select value="@selectedYearRange"
+                    @onchange="@((ChangeEventArgs e) =>
+                    { selectedYearRange = e.Value?.ToString() ?? "all"; OnFilterChanged(); })">
+                    <option value="all">All years</option>
+                    <option value="2020s">2020s</option>
+                    <option value="2010s">2010s</option>
+                    <option value="2000s">2000s</option>
+                    <option value="1990s">1990s</option>
+                    <option value="older">Before 1990</option>
+            </select>
+        </div>
+        <div>
+            <label>Minimum rating</label><br />
+            <select value="@selectedMinRating"
+                    @onchange="@((ChangeEventArgs e) =>
+                    { selectedMinRating = e.Value?.ToString() ?? "all"; OnFilterChanged(); })">
+                    <option value="all">All ratings</option>
+                    <option value="9">9.0+</option>
+                    <option value="8">8.0+</option>
+                    <option value="7">7.0+</option>
+                    <option value="6">6.0+</option>
+                    <option value="5">5.0+</option>
             </select>
         </div>
 
         <div>
-            <label>Genre</label><br />
-            <select value="@selectedGenre" @onchange="@((ChangeEventArgs e) => { selectedGenre = e.Value?.ToString() ?? "all"; OnFilterChanged(); })">
-                <option value="all">All</option>
-                <option value="Action">Action</option>
-                <option value="Drama">Drama</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Crime">Crime</option>
-                <option value="Horror">Horror</option>
-            </select>
-        </div>
-
-        <div>
-            <button @onclick="Search" style="padding:6px 14px; border-radius:6px; border:none; background:#6c63ff; color:white;">
+            <button @onclick="Search"
+                    style="padding:6px 14px; border-radius:6px; border:none; background:#6c63ff; color:white;">
                 Apply filters
             </button>
         </div>
     </div>
 
     <div style="font-size:12px; margin-bottom:10px;">
-        Current: @selectedType, @selectedSort, @selectedGenre (Total: @filteredTitles.Count items)
+        Current:
+        Sort=@selectedSort,
+        Year=@selectedYearRange,
+        MinRating=@selectedMinRating
+        (Total: @filteredTitles.Count items)
     </div>
 
     @if (filteredTitles.Count == 0)
@@ -93,10 +107,18 @@ else
             @foreach (var item in filteredTitles)
             {
                 <div style="display:flex; gap:10px; padding:10px; border-radius:8px; background:#1f1f3a;">
-                    <img src="@item.ImageUrl" style="width:70px; height:105px; object-fit:cover; border-radius:8px;" />
+                    <img src="@item.ImageUrl"
+                         style="width:70px; height:105px; object-fit:cover; border-radius:8px;" />
                     <div>
                         <div style="font-weight:bold;">@item.Title</div>
-                        <div style="font-size:12px; color:#ccc;">@item.Year • Rank @item.Rank • @item.Genre • @item.Type</div>
+                        <div style="font-size:12px; color:#ccc;">
+                            @(item.Year == 0 ? "Year unknown" : item.Year.ToString())
+                            • Rank @item.Rank
+                            @if (item.Rating > 0)
+                            {
+                                <text> • @($"{item.Rating:0.0}")/10</text>
+                            }
+                        </div>
                     </div>
                 </div>
             }
@@ -105,85 +127,27 @@ else
 }
 
 @code {
-    private List<MovieItem> allTitles = new();
-    private List<MovieItem> filteredTitles = new();
-    private List<MovieItem> movieList = new();
-    private List<MovieItem> tvList = new();
+    private List<MovieItem> allTitles = new List<MovieItem>();
+    private List<MovieItem> filteredTitles = new List<MovieItem>();
 
-    private string selectedType = "all";
+    private List<MovieItem> movieList = new List<MovieItem>();
+    private List<MovieItem> tvList = new List<MovieItem>();
+
     private string selectedSort = "newest";
-    private string selectedGenre = "all";
+    private string selectedYearRange = "all";
+    private string selectedMinRating = "all";
 
     private bool loaded;
     private string errormessage;
 
     protected override async Task OnInitializedAsync()
     {
-        await GetTitlesAsync();
-    }
-
-    private async Task GetTitlesAsync()
-    {
         try
         {
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-most-popular?limit=30&topMeterTitlesType=ALL")
-            };
-
-            request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
-            request.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
-
-            var response = await Http.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-
-            var json = await response.Content.ReadAsStringAsync();
-            var result = System.Text.Json.JsonSerializer.Deserialize<ApiResponse>(json, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-            if (result?.data?.topMeterTitles?.edges == null)
-            {
-                errormessage = "No data received from API.";
-                loaded = false;
-                return;
-            }
-
-            allTitles = result.data.topMeterTitles.edges.Select(e =>
-            {
-                var r = e.node.meterRanking.currentRank;
-                string g;
-                if (r % 5 == 0) g = "Horror";
-                else if (r % 4 == 0) g = "Crime";
-                else if (r % 3 == 0) g = "Comedy";
-                else if (r % 2 == 0) g = "Drama";
-                else g = "Action";
-
-                return new MovieItem
-                {
-                    Title = e.node.titleText.text,
-                    Year = e.node.releaseYear.year.ToString(),
-                    ImageUrl = e.node.primaryImage?.url,
-                    Rank = r,
-                    Type = e.node.titleType?.id,
-                    Genre = g
-                };
-            }).ToList();
-
-            movieList = allTitles
-                .Where(x => x.Type == "movie")
-                .OrderBy(x => x.Rank)
-                .Take(10)
-                .ToList();
-
-            tvList = allTitles
-                .Where(x => x.Type != "movie")
-                .OrderBy(x => x.Rank)
-                .Take(10)
-                .ToList();
-
+            await LoadMostPopularAsync();
+            await LoadChartRankingsAsync();
             loaded = true;
-            errormessage = string.Empty;
-
+            errormessage = "";
             ApplyFilters();
         }
         catch (Exception ex)
@@ -193,26 +157,140 @@ else
         }
     }
 
-    private async Task Search()
+    private async Task LoadMostPopularAsync()
+    {
+        var request = new HttpRequestMessage();
+        request.Method = HttpMethod.Get;
+        request.RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-most-popular?limit=30&topMeterTitlesType=ALL");
+        request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
+        request.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
+
+        var response = await Http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        var json = await response.Content.ReadAsStringAsync();
+        var options = new System.Text.Json.JsonSerializerOptions();
+        options.PropertyNameCaseInsensitive = true;
+        var result = System.Text.Json.JsonSerializer.Deserialize<MostPopularResponse>(json, options);
+
+        if (result == null || result.data == null || result.data.topMeterTitles == null || result.data.topMeterTitles.edges == null)
+        {
+            throw new Exception("No data");
+        }
+
+        var items = new List<MovieItem>();
+
+        foreach (var edge in result.data.topMeterTitles.edges)
+        {
+            var node = edge.node;
+            int year = 0;
+            if (node.releaseYear != null && node.releaseYear.year.HasValue)
+            {
+                year = node.releaseYear.year.Value;
+            }
+
+            int rank = node.meterRanking != null ? node.meterRanking.currentRank : 0;
+            string imageUrl = node.primaryImage != null ? node.primaryImage.url : null;
+            string typeId = node.titleType != null ? node.titleType.id : null;
+
+            var movieItem = new MovieItem();
+            movieItem.Title = node.titleText != null ? node.titleText.text : "";
+            movieItem.Year = year;
+            movieItem.ImageUrl = imageUrl;
+            movieItem.Rank = rank;
+            movieItem.Type = typeId;
+            movieItem.Rating = 0;
+
+            items.Add(movieItem);
+        }
+        movieList = items
+            .Where(x => x.Type == "movie")
+            .OrderBy(x => x.Rank)
+            .Take(10)
+            .ToList();
+
+        tvList = items
+            .Where(x => x.Type != "movie")
+            .OrderBy(x => x.Rank)
+            .Take(10)
+            .ToList();
+    }
+
+    private async Task LoadChartRankingsAsync()
+    {
+        var request = new HttpRequestMessage();
+        request.Method = HttpMethod.Get;
+        request.RequestUri = new Uri("https://imdb232.p.rapidapi.com/api/title/get-chart-rankings?rankingsChartType=TOP_250&limit=50");
+        request.Headers.Add("x-rapidapi-key", "efd389adbamsh2bf57e66af80e83p1faf69jsndbb9a365e1d3");
+        request.Headers.Add("x-rapidapi-host", "imdb232.p.rapidapi.com");
+
+        var response = await Http.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        var json = await response.Content.ReadAsStringAsync();
+        var options = new System.Text.Json.JsonSerializerOptions();
+        options.PropertyNameCaseInsensitive = true;
+        var result = System.Text.Json.JsonSerializer.Deserialize<ChartRankingsResponse>(json, options);
+
+        if (result == null || result.data == null || result.data.titleChartRankings == null || result.data.titleChartRankings.edges == null)
+        {
+            throw new Exception("No data.");
+        }
+
+        allTitles = new List<MovieItem>();
+
+        foreach (var edge in result.data.titleChartRankings.edges)
+        {
+            var item = edge.node.item;
+
+            int year = 0;
+            if (item.releaseYear != null && item.releaseYear.year.HasValue)
+            {
+                year = item.releaseYear.year.Value;
+            }
+
+            int rank = 0;
+            double rating = 0.0;
+
+            if (item.ratingsSummary != null)
+            {
+                if (item.ratingsSummary.topRanking != null)
+                {
+                    rank = item.ratingsSummary.topRanking.rank;
+                }
+
+                rating = item.ratingsSummary.aggregateRating;
+            }
+
+            string imageUrl = item.primaryImage != null ? item.primaryImage.url : null;
+            string typeId = item.titleType != null ? item.titleType.id : null;
+
+            var movieItem = new MovieItem();
+            movieItem.Title = item.titleText != null ? item.titleText.text : "";
+            movieItem.Year = year;
+            movieItem.ImageUrl = imageUrl;
+            movieItem.Rank = rank;
+            movieItem.Type = typeId;
+            movieItem.Rating = rating;
+
+            allTitles.Add(movieItem);
+        }
+    }
+
+    private void Search()
     {
         if (!loaded)
         {
-            await GetTitlesAsync();
-        }
-        else
-        {
-            ApplyFilters();
+            return;
         }
 
-        StateHasChanged();
+        ApplyFilters();
     }
-
     private void OnFilterChanged()
     {
         if (loaded)
         {
             ApplyFilters();
-            InvokeAsync(StateHasChanged);
         }
     }
 
@@ -224,45 +302,66 @@ else
             return;
         }
 
-        IEnumerable<MovieItem> q = allTitles;
+        IEnumerable<MovieItem> query = allTitles;
 
-        if (selectedType == "movie")
-            q = q.Where(x => x.Type == "movie");
-        else if (selectedType == "tv")
-            q = q.Where(x => x.Type != "movie");
+        if (selectedYearRange == "2020s")
+        {
+            query = query.Where(x => x.Year >= 2020 && x.Year <= 2029);
+        }
+        else if (selectedYearRange == "2010s")
+        {
+            query = query.Where(x => x.Year >= 2010 && x.Year <= 2019);
+        }
+        else if (selectedYearRange == "2000s")
+        {
+            query = query.Where(x => x.Year >= 2000 && x.Year <= 2009);
+        }
+        else if (selectedYearRange == "1990s")
+        {
+            query = query.Where(x => x.Year >= 1990 && x.Year <= 1999);
+        }
+        else if (selectedYearRange == "older")
+        {
+            query = query.Where(x => x.Year > 0 && x.Year < 1990);
+        }
 
-        if (selectedGenre != "all")
-            q = q.Where(x => x.Genre == selectedGenre);
+        double minRating;
+        if (double.TryParse(selectedMinRating, out minRating))
+        {
+            if (minRating > 0)
+            {
+                query = query.Where(x => x.Rating >= minRating);
+            }
+        }
 
         if (selectedSort == "rank")
-            q = q.OrderBy(x => x.Rank);
+        {
+            query = query.OrderBy(x => x.Rank);
+        }
         else
-            q = q.OrderByDescending(x => int.Parse(x.Year));
+        {
+            query = query.OrderByDescending(x => x.Year);
+        }
 
-        filteredTitles = q.ToList();
+        filteredTitles = query.ToList();
     }
-
-    public class ApiResponse
+    public class MostPopularResponse
     {
-        public ApiData data { get; set; }
+        public MostPopularData data { get; set; }
     }
-
-    public class ApiData
+    public class MostPopularData
     {
         public TopTitles topMeterTitles { get; set; }
     }
-
     public class TopTitles
     {
-        public List<Edge> edges { get; set; }
+        public List<MostPopularEdge> edges { get; set; }
     }
-
-    public class Edge
+    public class MostPopularEdge
     {
-        public MovieNode node { get; set; }
+        public MostPopularNode node { get; set; }
     }
-
-    public class MovieNode
+    public class MostPopularNode
     {
         public TitleText titleText { get; set; }
         public ReleaseYear releaseYear { get; set; }
@@ -270,20 +369,71 @@ else
         public MeterRanking meterRanking { get; set; }
         public TitleType titleType { get; set; }
     }
-
-    public class TitleText { public string text { get; set; } }
-    public class ReleaseYear { public int year { get; set; } }
-    public class PrimaryImage { public string url { get; set; } }
-    public class MeterRanking { public int currentRank { get; set; } }
-    public class TitleType { public string id { get; set; } }
-
+    public class ChartRankingsResponse
+    {
+        public ChartData data { get; set; }
+    }
+    public class ChartData
+    {
+        public TitleChartRankings titleChartRankings { get; set; }
+    }
+    public class TitleChartRankings
+    {
+        public List<ChartEdge> edges { get; set; }
+    }
+    public class ChartEdge
+    {
+        public ChartNode node { get; set; }
+    }
+    public class ChartNode
+    {
+        public ChartItem item { get; set; }
+    }
+    public class ChartItem
+    {
+        public TitleText titleText { get; set; }
+        public ReleaseYear releaseYear { get; set; }
+        public PrimaryImage primaryImage { get; set; }
+        public TitleType titleType { get; set; }
+        public RatingsSummary ratingsSummary { get; set; }
+    }
+    public class TitleText
+    {
+        public string text { get; set; }
+    }
+    public class ReleaseYear
+    {
+        public int? year { get; set; }
+    }
+    public class PrimaryImage
+    {
+        public string url { get; set; }
+    }
+    public class MeterRanking
+    {
+        public int currentRank { get; set; }
+    }
+    public class TitleType
+    {
+        public string id { get; set; }
+    }
+    public class RatingsSummary
+    {
+        public int voteCount { get; set; }
+        public double aggregateRating { get; set; }
+        public TopRanking topRanking { get; set; }
+    }
+    public class TopRanking
+    {
+        public int rank { get; set; }
+    }
     public class MovieItem
     {
         public string Title { get; set; }
-        public string Year { get; set; }
+        public int Year { get; set; }
         public string ImageUrl { get; set; }
         public int Rank { get; set; }
         public string Type { get; set; }
-        public string Genre { get; set; }
+        public double Rating { get; set; }
     }
 }

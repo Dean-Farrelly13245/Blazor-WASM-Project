@@ -1074,10 +1074,10 @@ C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\ref\BlazorMovieApp.dll
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\ysmhjibw3n-jtqjns3795.gz
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\ramxuo8zkw-9e2w7he05p.gz
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.wld6vrazcl.wasm
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.vk1hp9edso.pdb
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.wld6vrazcl.wasm.gz
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.vk1hp9edso.pdb.gz
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\q7n0qwi7lc-wld6vrazcl.gz
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\bquia31egb-vk1hp9edso.gz
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\17frpfkyma-2ug381f9qw.gz
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.ohx0wisisd.wasm
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.0562f8sj28.pdb
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.ohx0wisisd.wasm.gz
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\bin\Debug\net9.0\wwwroot\_framework\BlazorMovieApp.0562f8sj28.pdb.gz
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\q7n0qwi7lc-ohx0wisisd.gz
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\bquia31egb-0562f8sj28.gz
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Debug\net9.0\compressed\17frpfkyma-fvdhebel36.gz

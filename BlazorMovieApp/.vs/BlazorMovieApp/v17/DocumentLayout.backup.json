@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "Pages\\Search.razor",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Pages\\Search.razor",
               "RelativeToolTip": "Pages\\Search.razor",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAkwJYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAAAJAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-12-08T17:11:43.16Z",
               "EditorCaption": ""
@@ -41,9 +41,10 @@
               "RelativeDocumentMoniker": "Pages\\Home.razor",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Pages\\Home.razor",
               "RelativeToolTip": "Pages\\Home.razor",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAIYAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEQAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-08T16:56:08.805Z"
+              "WhenOpened": "2025-12-08T16:56:08.805Z",
+              "EditorCaption": ""
             }
           ]
         }
