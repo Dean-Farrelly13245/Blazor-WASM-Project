@@ -75,5 +75,20 @@ namespace MovieApp.PlaywrightTests
 
             Assert.That(countAfter, Is.LessThanOrEqualTo(countBefore));
         }
+        [Test]
+        public async Task ClickingMovie_DoesNotBreakPage()
+        {
+            await _page.GotoAsync(_baseUrl);
+            await _page.WaitForTimeoutAsync(10000);
+
+            var firstMovieCard = await _page.QuerySelectorAsync("div[style*='cursor:pointer']");
+            Assert.That(firstMovieCard, Is.Not.Null, "No movie cards were found on the page.");
+
+            await firstMovieCard.ClickAsync();
+            await _page.WaitForTimeoutAsync(3000);
+
+            var bodyAfterClick = await _page.TextContentAsync("body");
+            Assert.That(bodyAfterClick, Does.Contain("Popular Movies"));
+        }
     }
 }

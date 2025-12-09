@@ -38,8 +38,7 @@
               "RelativeToolTip": "wwwroot\\index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-12-09T01:18:09.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T01:18:09.234Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "MovieApp.PlaywrightTests\\UnitTest1.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\MovieApp.PlaywrightTests\\UnitTest1.cs",
               "RelativeToolTip": "MovieApp.PlaywrightTests\\UnitTest1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAwFgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T20:36:11.441Z",
               "EditorCaption": ""
@@ -76,8 +75,7 @@
               "RelativeToolTip": "Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-08T16:56:08.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T16:56:08.805Z"
             }
           ]
         }
