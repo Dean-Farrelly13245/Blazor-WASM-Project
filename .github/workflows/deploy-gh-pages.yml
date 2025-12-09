@@ -1,4 +1,4 @@
-name: Build and deploy Blazor WASM to GitHub Pages
+name: Build, test and deploy Blazor WASM to GitHub Pages
 
 on:
   push:
@@ -26,6 +26,18 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "9.0.x"
+
+      - name: Build Playwright test project (Release)
+        working-directory: ./BlazorMovieApp
+        run: dotnet build MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj -c Release
+
+      - name: Install Playwright browsers
+        working-directory: ./BlazorMovieApp/MovieApp.PlaywrightTests/bin/Release/net9.0
+        run: pwsh ./playwright.ps1 install
+
+      - name: Run Playwright tests (Release)
+        working-directory: ./BlazorMovieApp
+        run: dotnet test MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj -c Release --no-build
 
       - name: Publish Blazor app (Release)
         working-directory: ./BlazorMovieApp
