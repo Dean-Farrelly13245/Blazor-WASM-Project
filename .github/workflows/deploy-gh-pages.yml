@@ -1,28 +1,46 @@
-name: Deploy Blazor WebAssembly to GitHub Pages
+name: Build, Test and Deploy Blazor WASM
 
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches: [ main ]
+
+permissions:
+  contents: write
 
 jobs:
-  build-and-deploy:
+  build-test-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
 
-    - name: Publish Blazor WebAssembly
-      run: dotnet publish BlazorMovieApp/BlazorMovieApp.csproj -c Release -o build
+      - name: Restore Blazor project
+        run: dotnet restore ./BlazorMovieApp/BlazorMovieApp.csproj
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: build/wwwroot
+      - name: Build Blazor project
+        run: dotnet build ./BlazorMovieApp/BlazorMovieApp.csproj --configuration Release --no-restore
+
+      - name: Build Playwright tests project
+        run: dotnet build ./MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj
+
+      - name: Install Playwright browsers
+        shell: pwsh
+        run: ./MovieApp.PlaywrightTests/bin/Debug/net9.0/playwright.ps1 install --with-deps
+
+      - name: Run Playwright tests
+        run: dotnet test ./MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj --configuration Release
+
+      - name: Publish Blazor app
+        run: dotnet publish ./BlazorMovieApp/BlazorMovieApp.csproj -c Release -o ./BlazorMovieApp/publish
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./BlazorMovieApp/publish/wwwroot
