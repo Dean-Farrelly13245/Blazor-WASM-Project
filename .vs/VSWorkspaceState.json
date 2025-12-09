@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\BlazorMovieApp",
+    "\\BlazorMovieApp\\Pages"
+  ],
+  "SelectedNode": "\\.github\\workflows\\deploy-gh-pages.yml",
+  "PreviewInSolutionExplorer": false
+}

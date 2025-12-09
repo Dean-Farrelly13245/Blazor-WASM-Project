@@ -63,7 +63,6 @@ else if (results.Count > 0)
         searched = true;
         error = "";
         results = new List<SearchItem>();
-
         try
         {
             var url = $"https://imdb232.p.rapidapi.com/api/search?q={Uri.EscapeDataString(query)}&count=40";
