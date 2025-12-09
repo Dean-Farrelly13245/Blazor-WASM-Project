@@ -1,21 +1,18 @@
-name: Build, test and deploy Blazor app to GitHub Pages
+name: Build, test and deploy Blazor app
 
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build_test_deploy:
+  build-and-test:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    env:
-      DOTNET_VERSION: "9.0.x"
 
     steps:
       - name: Checkout repository
@@ -24,26 +21,44 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: 9.0.x
 
-      - name: Restore Blazor app
+      - name: Restore Blazor project
         run: dotnet restore ./BlazorMovieApp/BlazorMovieApp.csproj
 
-      - name: Build Blazor app (Release)
+      - name: Build Blazor project (Release)
         run: dotnet build ./BlazorMovieApp/BlazorMovieApp.csproj --configuration Release --no-restore
 
+      # Build the Playwright test project
+      - name: Restore test project
+        run: dotnet restore ./BlazorMovieApp/MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj
+
+      - name: Build test project (Release)
+        run: dotnet build ./BlazorMovieApp/MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj --configuration Release --no-restore
+
+      - name: Install Playwright browsers
+        run: pwsh ./BlazorMovieApp/MovieApp.PlaywrightTests/bin/Release/net9.0/playwright.ps1 install
+
+
       - name: Run Playwright tests
-        working-directory: ./BlazorMovieApp
-        run: dotnet test ./MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj --configuration Release
+        run: dotnet test ./BlazorMovieApp/MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj --configuration Release --no-build
 
       - name: Publish Blazor app
         run: dotnet publish ./BlazorMovieApp/BlazorMovieApp.csproj -c Release -o ./publish
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./publish/wwwroot
 
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
