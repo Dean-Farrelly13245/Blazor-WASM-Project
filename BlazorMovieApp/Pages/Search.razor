@@ -13,13 +13,13 @@
     </button>
 </div>
 
-@if (loading)
-{
-    <p><em>Searching...</em></p>
-}
-else if (!string.IsNullOrEmpty(error))
+@if (!string.IsNullOrEmpty(error))
 {
     <p style="color:red">@error</p>
+}
+else if (loading)
+{
+    <p><em>Searching...</em></p>
 }
 else if (searched && results.Count == 0)
 {
@@ -56,13 +56,24 @@ else if (results.Count > 0)
 
     private async Task DoSearch()
     {
+        error = "";
+        results.Clear();
+        searched = false;
+
         if (string.IsNullOrWhiteSpace(query))
+        {
+            error = "Enter a search.";
             return;
+        }
+
+        if (query.Length < 3)
+        {
+            error = "Enter at least 3 characters.";
+            return;
+        }
 
         loading = true;
-        searched = true;
-        error = "";
-        results = new List<SearchItem>();
+
         try
         {
             var url = $"https://imdb232.p.rapidapi.com/api/search?q={Uri.EscapeDataString(query)}&count=40";
@@ -75,27 +86,36 @@ else if (results.Count > 0)
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
-            var api = System.Text.Json.JsonSerializer.Deserialize<SearchResponse>(json,
-                new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var api = System.Text.Json.JsonSerializer.Deserialize<SearchResponse>(
+                json,
+                new System.Text.Json.JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
 
-            if (api?.data?.mainSearch?.edges != null)
+            if (api != null &&
+                api.data != null &&
+                api.data.mainSearch != null &&
+                api.data.mainSearch.edges != null)
             {
                 results = api.data.mainSearch.edges
-                    .Select(e => e.node.entity)
-                    .Where(e => e != null && e.titleText != null)
-                    .Select(e => new SearchItem
+                    .Select(edge => edge.node.entity)
+                    .Where(entity => entity != null && entity.titleText != null)
+                    .Select(entity => new SearchItem
                     {
-                        Title = e.titleText.text,
-                        Year = e.releaseYear?.year?.ToString(),
-                        Type = e.titleType?.id,
-                        ImageUrl = e.primaryImage?.url
+                        Title = entity.titleText.text,
+                        Year = entity.releaseYear?.year?.ToString(),
+                        Type = entity.titleType?.id,
+                        ImageUrl = entity.primaryImage?.url
                     })
                     .ToList();
             }
+
+            searched = true;
         }
-        catch (Exception ex)
+        catch
         {
-            error = ex.Message;
+            error = "Something went wrong.";
         }
 
         loading = false;
@@ -134,10 +154,25 @@ else if (results.Count > 0)
         public PrimaryImage primaryImage { get; set; }
     }
 
-    public class TitleText { public string text { get; set; } }
-    public class ReleaseYear { public int? year { get; set; } }
-    public class TitleType { public string id { get; set; } }
-    public class PrimaryImage { public string url { get; set; } }
+    public class TitleText
+    {
+        public string text { get; set; }
+    }
+
+    public class ReleaseYear
+    {
+        public int? year { get; set; }
+    }
+
+    public class TitleType
+    {
+        public string id { get; set; }
+    }
+
+    public class PrimaryImage
+    {
+        public string url { get; set; }
+    }
 
     public class SearchItem
     {
