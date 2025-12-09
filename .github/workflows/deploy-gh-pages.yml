@@ -1,46 +1,49 @@
-name: Build, Test and Deploy Blazor WASM
+name: Build, test and deploy Blazor app to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-
-permissions:
-  contents: write
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  build-test-deploy:
+  build_test_deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    env:
+      DOTNET_VERSION: "9.0.x"
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Restore Blazor project
+      - name: Restore Blazor app
         run: dotnet restore ./BlazorMovieApp/BlazorMovieApp.csproj
 
-      - name: Build Blazor project
+      - name: Build Blazor app (Release)
         run: dotnet build ./BlazorMovieApp/BlazorMovieApp.csproj --configuration Release --no-restore
 
-      - name: Build Playwright tests project
-        run: dotnet build ./MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj
-
-      - name: Install Playwright browsers
-        shell: pwsh
-        run: ./MovieApp.PlaywrightTests/bin/Debug/net9.0/playwright.ps1 install --with-deps
-
       - name: Run Playwright tests
+        working-directory: ./BlazorMovieApp
         run: dotnet test ./MovieApp.PlaywrightTests/MovieApp.PlaywrightTests.csproj --configuration Release
 
       - name: Publish Blazor app
-        run: dotnet publish ./BlazorMovieApp/BlazorMovieApp.csproj -c Release -o ./BlazorMovieApp/publish
+        run: dotnet publish ./BlazorMovieApp/BlazorMovieApp.csproj -c Release -o ./publish
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./publish/wwwroot
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./BlazorMovieApp/publish/wwwroot
+        id: deployment
+        uses: actions/deploy-pages@v4
