@@ -10,7 +10,7 @@ namespace MovieApp.PlaywrightTests
         private IPage _page;
         private IPlaywright _playwright;
 
-        private string _baseUrl = "https://localhost:7166/";
+        private string _baseUrl = "https://dean-farrelly13245.github.io/Blazor-WASM-Project/";
 
         [SetUp]
         public async Task Setup()

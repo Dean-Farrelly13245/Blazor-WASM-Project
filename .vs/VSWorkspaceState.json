@@ -4,8 +4,8 @@
     "\\.github",
     "\\.github\\workflows",
     "\\BlazorMovieApp",
+    "\\BlazorMovieApp\\MovieApp.PlaywrightTests",
     "\\BlazorMovieApp\\Pages"
   ],
-  "SelectedNode": "\\.github\\workflows\\deploy-gh-pages.yml",
   "PreviewInSolutionExplorer": false
 }
