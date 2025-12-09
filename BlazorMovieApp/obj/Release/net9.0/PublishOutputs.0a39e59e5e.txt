@@ -1,0 +1,6 @@
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Release\net9.0\browser-wasm\PubTmp\Out\MovieApp.PlaywrightTests\bin\Debug\net9.0\MovieApp.PlaywrightTests.deps.json
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Release\net9.0\browser-wasm\PubTmp\Out\MovieApp.PlaywrightTests\bin\Debug\net9.0\MovieApp.PlaywrightTests.runtimeconfig.json
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Release\net9.0\browser-wasm\PubTmp\Out\MovieApp.PlaywrightTests\obj\Debug\net9.0\MovieApp.PlaywrightTests.sourcelink.json
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Release\net9.0\browser-wasm\PubTmp\Out\MovieApp.PlaywrightTests\obj\MovieApp.PlaywrightTests.csproj.nuget.dgspec.json
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Release\net9.0\browser-wasm\PubTmp\Out\MovieApp.PlaywrightTests\obj\project.assets.json
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\obj\Release\net9.0\browser-wasm\PubTmp\Out\web.config

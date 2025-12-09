@@ -33,12 +33,12 @@
               "Title": "AddressBinder.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\7f988d92f74adc3858f108e90f6756bdbd458bdc1dfe85ac599bdac763b3f931\\AddressBinder.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7f988d92f74adc3858f108e90f6756bdbd458bdc1dfe85ac599bdac763b3f931\\AddressBinder.cs",
-              "ToolTip": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\7f988d92f74adc3858f108e90f6756bdbd458bdc1dfe85ac599bdac763b3f931\\AddressBinder.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7f988d92f74adc3858f108e90f6756bdbd458bdc1dfe85ac599bdac763b3f931\\AddressBinder.cs [Read Only]",
+              "ToolTip": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\7f988d92f74adc3858f108e90f6756bdbd458bdc1dfe85ac599bdac763b3f931\\AddressBinder.cs",
+              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\7f988d92f74adc3858f108e90f6756bdbd458bdc1dfe85ac599bdac763b3f931\\AddressBinder.cs",
               "ViewState": "AgIAAJ0AAAAAAAAAAAAwwK4AAAADAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T21:20:20.094Z",
-              "EditorCaption": " [Read Only]"
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -50,8 +50,7 @@
               "RelativeToolTip": "MovieApp.PlaywrightTests\\UnitTest1.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAAwE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-08T20:36:11.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T20:36:11.441Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "Pages\\Search.razor",
               "ViewState": "AgIAAH4AAAAAAAAAAAAAAJAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-08T17:11:43.16Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T17:11:43.16Z"
             },
             {
               "$type": "Document",
@@ -76,8 +74,7 @@
               "RelativeToolTip": "Pages\\Home.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-08T16:56:08.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-08T16:56:08.805Z"
             }
           ]
         }
