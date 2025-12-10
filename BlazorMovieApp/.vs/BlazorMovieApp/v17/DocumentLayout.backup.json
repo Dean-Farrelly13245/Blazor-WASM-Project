@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazormovieapp\\pages\\search.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|solutionrelative:pages\\search.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazormovieapp\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|solutionrelative:layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazormovieapp\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|solutionrelative:layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9769F0F8-C66C-4B38-8691-066C12C23C41}|MovieApp.PlaywrightTests\\MovieApp.PlaywrightTests.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazormovieapp\\movieapp.playwrighttests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9769F0F8-C66C-4B38-8691-066C12C23C41}|MovieApp.PlaywrightTests\\MovieApp.PlaywrightTests.csproj|solutionrelative:movieapp.playwrighttests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazormovieapp\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|solutionrelative:pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|c:\\users\\administrator\\desktop\\blazor-wasm-project\\blazormovieapp\\pages\\search.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BF5C70E4-CD86-41D4-9BF3-12EFABA24324}|BlazorMovieApp.csproj|solutionrelative:pages\\search.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +34,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Layout\\NavMenu.razor",
+              "RelativeToolTip": "Layout\\NavMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-10T16:04:07.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-10T16:04:06.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\wwwroot\\index.html",
               "RelativeDocumentMoniker": "wwwroot\\index.html",
@@ -42,32 +76,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UnitTest1.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\MovieApp.PlaywrightTests\\UnitTest1.cs",
               "RelativeDocumentMoniker": "MovieApp.PlaywrightTests\\UnitTest1.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\MovieApp.PlaywrightTests\\UnitTest1.cs",
               "RelativeToolTip": "MovieApp.PlaywrightTests\\UnitTest1.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAwFgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAwFwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T20:36:11.441Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Search.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Pages\\Search.razor",
               "RelativeDocumentMoniker": "Pages\\Search.razor",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Pages\\Search.razor",
               "RelativeToolTip": "Pages\\Search.razor",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAAHgAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-08T17:11:43.16Z"
+              "WhenOpened": "2025-12-08T17:11:43.16Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\Blazor-WASM-Project\\BlazorMovieApp\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Pages\\Home.razor",

@@ -1,7 +1,6 @@
 wwwroot\css\app.css
 wwwroot\favicon.png
 wwwroot\icon-192.png
-wwwroot\index.html
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -46,8 +45,8 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\index.html
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\css\app.css
-C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\index.html
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -92,3 +91,4 @@ C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bo
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+C:\Users\Administrator\Desktop\Blazor-WASM-Project\BlazorMovieApp\wwwroot\index.html

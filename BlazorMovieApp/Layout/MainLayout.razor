@@ -1,8 +1,9 @@
 ﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Routing
 
 <div class="topnav">
     <div class="nav-left">
-        <a class="brand" href="/">MovieAppr</a>
+        <a class="brand" href="">MovieAppr</a>
     </div>
 
     <button class="nav-toggle" @onclick="ToggleMenu">
@@ -10,8 +11,8 @@
     </button>
 
     <div class="nav-links @(menuOpen ? "open" : "")">
-        <a href="/">Home</a>
-        <a href="/search">Search</a>
+        <NavLink href="" Match="NavLinkMatch.All">Home</NavLink>
+        <NavLink href="search">Search</NavLink>
     </div>
 </div>
 
