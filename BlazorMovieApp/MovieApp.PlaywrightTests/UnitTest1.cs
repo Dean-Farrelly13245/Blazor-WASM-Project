@@ -81,7 +81,7 @@ namespace MovieApp.PlaywrightTests
             await _page.GotoAsync(_baseUrl);
             await _page.WaitForTimeoutAsync(10000);
 
-            var firstMovieCard = await _page.QuerySelectorAsync("div[style*='cursor:pointer']");
+            var firstMovieCard = await _page.QuerySelectorAsync("[data-testid='movie-card']");
             Assert.That(firstMovieCard, Is.Not.Null, "No movie cards were found on the page.");
 
             await firstMovieCard.ClickAsync();
